@@ -1,0 +1,34 @@
+.botones {
+    white-space: normal;
+    width: 100%;
+    border-radius: 18px; /* Bordes más redondeados */
+    background-color: #4b0daf;
+    color: #ffffff;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 15px 20px;
+    font-weight: bold;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Pestaña en la parte superior izquierda con forma curva */
+.botones::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 30px;
+    height: 50px;
+    background-color: #4b0daf; /* Mismo color del botón */
+    border-top-left-radius: 45%;
+    clip-path: polygon(130% 0%, 30% 0%, 100% 100%);
+}
+
+.botones:hover {
+    background: #500ebb;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    border: 0.5px solid #ffffff;
+}
