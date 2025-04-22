@@ -22,8 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $submenu = 'menu_' . $clave;
 
     // Insertar en la tabla nivel2
-    $sql = "INSERT INTO nivel2 (submenu_padre, nombre, imagen, texto, href, estado, onclick, submenu)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql =  "INSERT INTO nivel2 (
+                submenu_padre, nombre, texto, tipo, imagen, href, onclick, submenu, estado
+              ) VALUES (
+                ?, ?, ?, ?, ?, ?, ?, ?, 1
+              )";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("sssssiss", $submenu_padre, $nombre, $imagen, $texto, $href, $estado, $onclick, $submenu);
 
@@ -90,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Submenu del botón padre, enviado por GET en la URL -->
         <input type="hidden" name="submenu_padre" value="<?php echo isset($_GET['submenu']) ? htmlspecialchars($_GET['submenu']) : ''; ?>">
 
+
         <div class="mb-3">
             <label for="nombre_boton" class="form-label"><b>Nombre del botón</b></label>
             <input type="text" class="form-control" id="nombre_boton" name="nombre_boton"
@@ -128,7 +132,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     });
 </script>
-
-
 </body>
 </html>

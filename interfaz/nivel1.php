@@ -1,4 +1,4 @@
-<<?php 
+<?php 
 // Proceso de inserción solo si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conexion = new mysqli("localhost", "root", "", "cooperativas");
@@ -15,13 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Generar clave sin espacios ni mayúsculas
     $clave = strtolower(str_replace(' ', '_', $nombre));
 
-    // Campos automáticos
+    // Campos automáticos para nivel 1
     $imagen = '../images/logo.png';
     $href = 'submt_' . $clave;
     $onclick = 'onclick_' . $clave;
-    $submenu = 'menu_' . $clave;
+    $submenu_nivel1 = 'menu_' . $clave;
 
-    // Insertar en la tabla `menu`
+    // Insertar en la tabla `menu` (nivel 1)
     $sql = "INSERT INTO menu (nombre, imagen, texto, href, estado, onclick, submenu)
             VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($sql);
@@ -30,11 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("<div class='alert alert-danger text-center'>Error al preparar la consulta: " . $conexion->error . "</div>");
     }
 
-    $stmt->bind_param("ssssiss", $nombre, $imagen, $texto, $href, $estado, $onclick, $submenu);
+    $stmt->bind_param("ssssiss", $nombre, $imagen, $texto, $href, $estado, $onclick, $submenu_nivel1);
 
     if ($stmt->execute()) {
+        // Campos personalizados para nivel 2
+        $submenu_padre = $clave;                  // ejemplo: acreedor
+        $submenu_hijo = 'hijo_' . $clave;         // ejemplo: hijo_acreedor
+
+        // Insertar en la tabla `nivel2`
+        $sql2 = "INSERT INTO nivel2 (submenu, submenu_padre, nombre, texto, estado)
+                 VALUES (?, ?, ?, ?, ?)";
+        $stmt2 = $conexion->prepare($sql2);
+        $stmt2->bind_param("ssssi", $submenu_hijo, $submenu_padre, $nombre, $texto, $estado);
+        $stmt2->execute();
+        $stmt2->close();
+
         echo "<script>
-            alert(' Botón de Nivel 1 insertado correctamente.');
+            alert('Botón de Nivel 1 insertado correctamente.');
             if (window.opener) {
                 window.opener.location.href = 'gestionMenu.php';
                 window.close();
@@ -103,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       placeholder="Ej: Es CLIENTE de las cooperativas liquidadas..." required></textarea>
         </div>
 
-        
         <div class="form-check form-switch mb-3 d-flex justify-content-between align-items-center">
             <label class="form-check-label" for="estado"><b>Estado del botón</b></label>
             <input class="form-check-input" type="checkbox" id="estado" name="estado" value="1" checked>
@@ -133,4 +144,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
-

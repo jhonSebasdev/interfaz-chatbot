@@ -54,7 +54,7 @@ $resultado = $datos_sql->select_menu();
        
     </head>
 
-<div class="page-wrapper">
+    <div class="page-wrapper">
     <!-- Page Content-->
     <div class="page-content-tab">
         <div class="container-fluid">
@@ -143,14 +143,14 @@ $resultado = $datos_sql->select_menu();
         </div>
 
 
-                <div class="col-lg-4">
+                        <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="blog-card">
 
                                 <!-- Header con icono y título -->
                                 <div class="text-center mb-3">
-                                    <a href="javascript:void(0);" onclick="window.open('nivel2.php', 'popup', 'width=800,height=600');">
+                                <a href="javascript:void(0);" onclick="window.open('nivel2.php?submenu=<?php echo $submenuId; ?>', 'popup', 'width=800,height=600');">
                                         <img src="assets/images/añadir.png" alt="Añadir" style="width: 60px; height: 60px;">
                                     </a>
                                     <h5 class="mt-2"><b>Añadir botón<br>NIVEL 2</b></h5>
@@ -159,13 +159,9 @@ $resultado = $datos_sql->select_menu();
                                 <!-- Contenido scrollable -->
                                 <div class="card-content" style="max-height: 600px; overflow-y: auto;">
                                     <div class="card-header">
-                                        <div id="nivel2_contenido">
-
-                                            <!-- Imagen por defecto al iniciar -->
+                                        <div id="nivel2_contenido">      
                                             <img id="imagen_nivel2" src="assets/images/chatbot_izquierda_nivel2.png" alt="Chatbot Nivel 2" style="max-width: 100%; height: auto;">
-
-                                           
-                                        </div>
+                                        </div>    
                                     </div>
                                 </div>
 
@@ -180,20 +176,39 @@ $resultado = $datos_sql->select_menu();
                                     </div>
                                 </div>
 
-                                <!-- SCRIPT para controlar visibilidad -->
+                                <!-- Script para cargar Nivel 2 -->
                                 <script>
-                                    function ocultarImagenNivel2() {
-                                        const imagen = document.getElementById('imagen_nivel2');
-                                        const botones = document.getElementById('botones_nivel2');
-                                        if (imagen) imagen.style.display = 'none';
-                                        if (botones) botones.style.display = 'block';
+                                    function cargarNivel2(submenuPadre) {
+                                        const nivel2Contenido = document.getElementById('nivel2_contenido');
+                                        const imagenNivel2 = document.getElementById('imagen_nivel2');
+
+                                        if (imagenNivel2) imagenNivel2.style.display = 'none';
+
+                                        nivel2Contenido.innerHTML = '<div class="text-center p-2"> Cargando...</div>';
+
+                                        const submenuLimpiado = submenuPadre;
+
+                                        console.log("Enviando a obtener_nivel2.php:", submenuPadre);
+
+                                        fetch('./obtener_nivel2.php?id=' + encodeURIComponent(submenuLimpiado))
+                                            .then(response => {
+                                                if (!response.ok) throw new Error('Error en la solicitud');
+                                                return response.text();
+                                            })
+                                            .then(data => {
+                                                nivel2Contenido.innerHTML = data;
+                                            })
+                                            .catch(error => {
+                                                nivel2Contenido.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+                                            });
                                     }
                                 </script>
-
+                                
                             </div><!-- end blog-card -->
                         </div><!-- end card-body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
+
 
 
 
@@ -235,57 +250,7 @@ $resultado = $datos_sql->select_menu();
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                       /* function cargarNivel2(href) {
 
-                            const nivel2Contenido = document.getElementById('nivel2_contenido');
-                            const imagenNivel2 = document.getElementById('imagen_nivel2');
-                            if (imagenNivel2) imagenNivel2.style.display = 'none';
-                            nivel2Contenido.innerHTML += '<div id="cargando">Cargando...</div>';
-                            const xhr = new XMLHttpRequest();
-                            xhr.open('GET', './obtener_nivel_2.php?id=' + href, true);
-                            xhr.onload = function () {
-                                const cargando = document.getElementById('cargando');
-                                if (cargando) cargando.remove();
-                                nivel2Contenido.innerHTML += this.responseText;
-                            };
-                            xhr.onerror = function () {
-                                nivel2Contenido.innerHTML += '<p style="color:red;">Error al cargar contenido.</p>';
-                            };
-                            xhr.send();
-                        }
-*/
-
-                        function cargarNivel2(href) {
-                            const nivel2Contenido = document.getElementById('nivel2_contenido');
-                            const imagenNivel2 = document.getElementById('imagen_nivel2');
-
-                            // Ocultar imagen si existe
-                            if (imagenNivel2) imagenNivel2.style.display = 'none';
-
-                            // Limpiar contenido anterior antes de cargar nuevo contenido
-                            nivel2Contenido.innerHTML = '<div id="cargando">Cargando...</div>';
-
-                            // Usar fetch en lugar de XMLHttpRequest
-                            fetch('./obtener_nivel_2.php?id=' + encodeURIComponent(href))
-                                .then(response => {
-                                    if (!response.ok) throw new Error('Error en la solicitud');
-                                    return response.text();
-                                })
-                                .then(data => {
-                                    nivel2Contenido.innerHTML = data ;
-                                })
-                                .catch(error => {
-                                    nivel2Contenido.innerHTML = `<p style="color:red;">Error al cargar contenido: ${error.message}</p>`;
-                                });
-                        }
-
-
-
-
-
-                        //      window.cargarNivel2 = cargarNivel2;
-                              </script> 
                         </div><!-- end blog-card -->
                     </div><!-- end card-body -->
                 </div><!-- end card -->

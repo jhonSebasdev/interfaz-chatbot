@@ -176,14 +176,12 @@ function submt_fonr(id) {
     }
 }
 
-// Función para mostrar imágenes relacionadas a COSEDE
-function img_csdr(id) {
-    if (document.getElementById) {
-        var el = document.getElementById(id);
-        el.style.display = (el.style.display == 'none') ? 'block' : 'none';
-        $('#index').hide();
-        $('#img_csdd').show();
-        $('#menu_csd').show();
-        $('#menu_csd1').show();
-    }
+// Función para regresar al menú principal
+function nivel2_dinamico() {
+    $('#index').show();
+    $('#submt_acreedor1').hide(); 
+    $('#sub_menu1').hide();
+    $('#submt_deudor1').hide(); 
+    $('#sub_menu2').hide();
 }
+
