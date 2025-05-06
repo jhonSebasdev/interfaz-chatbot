@@ -1,0 +1,585 @@
+.btn-circle.btn-xl {
+    width: 100px;
+    height: 100px;
+    padding: 5px 5px;
+    border-radius: 85px;
+    font-size: 14px;
+    line-height: 1.33;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    color: rgb(107, 29, 29);
+    font-size: 36px;
+    transition: .3s;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+.boton-circle.boton-xl.boton-chat {
+    text-align:center;
+    width: 300px;
+    height: 50px;
+    padding: 30px 1px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 85px;
+    font-size: 14px;
+    line-height: 1.33;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin-right: 125px;
+    margin-bottom: 35px;
+    color:white;
+    transition: .3s;
+    background-color: #4b0daf;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    cursor: pointer;
+    
+}
+.boton-circle.boton-xl.boton-chat::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: -px;
+    width: 149px;
+    height: 43px;
+    background-color: #4b0daf;
+    clip-path: polygon(-44% -880%, 81% -10%, 156% 284%);
+    border-radius: 1px;
+}
+
+.chatbox {
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    width: 400px;
+    height: 400px;
+    font-family: 'Lato', sans-serif;
+
+    -webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.chatbox--tray {
+    bottom: -350px;
+}
+
+.chatbox--closed {
+    bottom: -400px;
+}
+
+.chatbox .form-control:focus {
+    border-color: #3b4ce6;
+}
+
+.chatbox__title,
+.chatbox__body {
+    border-bottom: none;
+}
+
+.chatbox__title {
+    min-height: 50px;
+    padding-right: 10px;
+    background-color: #4b0daf; 
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    cursor: pointer;
+
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.chatbox__title h5 {
+    height: 50px;
+    margin: 0 0 0 15px;
+    line-height: 50px;
+    position: relative;
+    padding-left: 20px;
+
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.chatbox__title h5 a {
+    color: #ffffff;
+    max-width: 195px;
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatbox__title {
+    display: flex; /* Asegura que los elementos estén alineados horizontalmente */
+    align-items: center; /* Alinea verticalmente */
+    position: relative; /* Necesario para los elementos absolutos */
+    justify-content: space-between; /* Espacia el punto a la izquierda y la imagen a la derecha */
+    width: 100%;
+    color: #f5f5f5;
+}
+
+
+/* Punto verde que palpita */
+.chatbox__title h5:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -3px; /* Ajusta la posición más a la izquierda */
+    right: inherit;
+    width: 12px;
+    height: 12px;
+    background-color: #00ff40;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    animation: pulse 1.5s infinite alternate ease-in-out;
+}
+
+/* Animación del punto palpitante */
+@keyframes pulse {
+    0% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50%) scale(1.4);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Imagen alineada a la derecha */
+.chatbox__title img {
+    width: 75px;
+    margin-right: 0px; 
+    left: -700px!important ;
+}
+
+
+.chatbox__title__tray:hover,
+.chatbox__title__close:hover {
+    opacity: 90;
+}
+
+.chatbox__title__tray span {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-bottom: 2px solid #fff
+}
+
+.chatbox__title__close svg {
+    vertical-align: middle;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.2px;
+}
+
+.chatbox__body,
+.chatbox__credentials{
+    padding: 15px;
+    border-top: 0;
+    background-color: #f5f5f5;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+   
+}
+
+.chatbox__credentials {
+    display: none;
+}
+
+.chatbox__credentials .form-control {
+    -webkit-box-shadow: none;
+}
+
+.chatbox__body {
+    overflow-y: auto;
+}
+
+.chatbox__body__message {
+    position: relative;
+}
+
+.chatbox__body__message p {
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    
+    
+    
+}
+/* Aplicar estilos solo a la imagen dentro de #menini */
+/*imanen de logo lado izquierdo 2*/
+.chatbox__body__message img {
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    left: -15px;
+
+}
+
+/*imanen de logo lado izquierdo 2*/
+.chatbox__body__message img {
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    left: -15px;
+
+}
+
+.chatbox__body__message--left p {
+    margin-left: 10px;
+    padding-left: 30px;
+    
+}
+
+
+.chatbox__body__message--right p {
+    margin-right: 15px;
+    padding-right: 30px;
+    text-align: right;
+    left: 0px;
+}
+
+.chatbox__body__message--right img {
+    right: -5px;
+}
+
+.chatbox__message {
+    padding: 15px;
+    min-height: 50px;
+    outline: 0;
+    resize: none;
+    border: none;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #fefefe;
+}
+
+.chatbox--empty {
+    height: 400px;
+}
+
+.chatbox--empty.chatbox--tray {
+    bottom: -350px;
+}
+
+.chatbox--empty.chatbox--closed {
+    bottom: -262px;
+}
+
+.chatbox--empty .chatbox__body,
+.chatbox--empty .chatbox__message {
+    display: none;
+}
+
+.chatbox--empty .chatbox__credentials {
+    display: block;
+}
+
+/* BOTON SI*/
+input.btn {
+        white-space: normal;
+        width: 100%;
+        border-radius: 18px; /* Bordes más redondeados */
+        background-color: #4b0daf;
+        color: #ffffff;
+        position: relative; /* Necesario para posicionar el pseudo-elemento */
+        padding: 15px 20px;
+        border: none;
+        text-align: center;
+        
+    }
+    
+ 
+    input.btn:hover {
+        background: #500ebb;
+        color: #ffffff !important; /* Fuerza el color blanco */
+        cursor: pointer;
+        border: 0.5px solid #ffffff;
+    }
+    
+
+
+.botones {
+    white-space: normal;
+    width: 100%;
+    border-radius: 18px; /* Bordes más redondeados */
+    background-color: #4b0daf;
+    color: #ffffff;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 15px 20px;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Pestaña en la parte superior izquierda con forma curva */
+.botones::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 30px;
+    height: 50px;
+    background-color: #4b0daf; /* Mismo color del botón */
+    border-top-left-radius: 45%;
+    clip-path: polygon(130% 0%, 30% 0%, 100% 100%);
+}
+
+.botones:hover {
+    background: #500ebb;
+    color: #ffffff;
+    cursor: pointer;
+    border: 0.5px solid #ffffff;
+}
+
+.botones, .botones_acreedor {
+    white-space: normal;
+    width: 100%;
+    border-radius: 18px; /* Bordes más redondeados */
+    background-color: #4b0daf;
+    color: #ffffff;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 15px 20px;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Pestaña en la parte superior izquierda con forma curva */
+.botones::before, .botones_acreedor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 30px;
+    height: 50px;
+    background-color: #4b0daf; /* Mismo color del botón */
+    border-top-left-radius: 45%;
+    clip-path: polygon(130% 0%, 30% 0%, 100% 100%);
+}
+
+/* Cambio de color al pasar el mouse */
+.botones:hover, .botones_acreedor:hover {
+    background: #500ebb;
+    color: #ffffff;
+    cursor: pointer;
+    border: 0.5px solid #ffffff;
+}
+
+
+
+.btn-back {
+    white-space: normal;
+    width: 100%;
+    border-radius: 18px; /* Bordes más redondeados */
+    background-color: #3b4ce6;
+    color: #ffffff;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    padding: 15px 20px;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    margin-top: -50px;
+}
+
+
+
+.btn-back:hover {
+    background: #3b4ce6;
+    color: #ffffff;
+    cursor: pointer;
+    border: 0.5px solid #ffffff;
+}
+
+
+
+/* BOTON PRINCIPAL CON ANIMAION*/
+.boton-chat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px; 
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    border: none;
+    animation: flotar 2s infinite ease-in-out; /* Aplica la animación */
+}
+@keyframes flotar {
+    0% { transform: translateY(0px); } /* Posición inicial */
+    50% { transform: translateY(-10px); } /* Sube un poco */
+    100% { transform: translateY(0px); } /* Vuelve a la posición original */
+}
+
+.boton-chat-icon img {
+    width: 120px; /* Ajusta el tamaño de la imagen */
+    height: 90px;
+    object-fit: contain;
+}
+
+
+
+/* ajustar el boton de INICIAR   */
+.btn-custom-start {
+    background-color: #8830fc;  
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+
+/* ajustar el boton  de Cancelar   */
+.btn-custom-cancel {
+    background-color: #3b4ce6;  
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin:3px ;
+}
+
+
+/* ajustar el boton de INICIAR (al mantener el mouse ejecutar este efecto)*/
+.btn-custom-start:hover {
+    background-color: #8830fc;
+    color: #ddd; 
+}
+
+
+/* ajustar el boton de cCANCELAR (al mantener el mouse ejecutar este efecto)*/
+.btn-custom-cancel:hover {
+    background-color: #3b4ce6;
+    color: #ddd;
+}
+
+.responsive-logo {
+    width: 50px;  
+    height: auto; 
+    margin-bottom: 5px; 
+}
+
+.responsive-logo2 {
+    width: 80px !important;
+    height: 80px !important;
+    display: block !important;
+    border: none !important;
+    margin-left: -18px !important; /* Mueve la imagen más a la izquierda */
+}
+
+.chat-bubble {
+    display: flex !important;  /* Asegura que la imagen y el texto estén en la misma línea */
+    align-items: center !important;  /* Centra verticalmente la imagen y el texto */
+    border: 2px solid #007bff !important;  /* Borde azul */
+    border-radius: 15px !important;  /* Esquinas redondeadas */
+    padding: 8px 15px !important;  /* Espaciado interno */
+    max-width: 97% !important;  /* Controla el ancho máximo */
+    background-color: white !important;  /* Fondo blanco */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1) !important;  /* Sombra ligera */
+}
+
+
+
+.chat-bubble p {
+    margin-left: 45px !important;  /* Mueve el texto más a la derecha */
+    flex: 1 !important;  /* Hace que el texto ocupe el espacio disponible */
+    text-align: left !important;  /* Asegura que el texto no quede centrado */
+}
+
+.chat-menos {
+    width: 30px!important;
+    height: 30px;
+    cursor: pointer; /* Hace que sea clickeable */
+
+}
+
+
+#resultado {
+    font-family: Arial, sans-serif!important; 
+    background-color: #f9f9f9!important; 
+    padding: 15px!important; 
+    border-radius: 8px!important; 
+    border: 1px solid #ddd!important; 
+    max-width: 600px!important; 
+    margin: auto!important; 
+}
+
+#resultado ul {
+    list-style: none!important; 
+    padding: 0!important; 
+}
+
+#resultado li {
+    padding: 5px 0!important; 
+}
+
+#resultado hr {
+    border: none!important; 
+    height: 1px!important; 
+    background: #ccc!important; 
+    margin: 10px 0!important; 
+}
+
+.botones, .botones_acreedor {
+    white-space: normal!important;
+    width: 100%!important;
+    border-radius: 18px!important;
+    background-color: #4b0daf!important;
+    color: #ffffff!important;
+    position: relative!important;
+    padding: 15px 20px!important;
+    border: none!important;
+    display: flex!important; /* clave para el alineado interno */
+    justify-content: space-between!important;
+    align-items: center!important;
+}
+
+.chat-logo1 {
+    position: static !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+

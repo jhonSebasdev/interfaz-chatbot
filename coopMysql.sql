@@ -1,0 +1,150 @@
+-- --------------------------------------------------------
+-- Host:                         192.168.12.228
+-- Versión del servidor:         5.5.68-MariaDB - MariaDB Server
+-- SO del servidor:              Linux
+-- HeidiSQL Versión:             11.3.0.6295
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Volcando estructura de base de datos para cooperativas
+DROP DATABASE IF EXISTS `cooperativas`;
+CREATE DATABASE IF NOT EXISTS `cooperativas` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `cooperativas`;
+
+-- Volcando estructura para tabla cooperativas.coop_acreedor
+DROP TABLE IF EXISTS `coop_acreedor`;
+CREATE TABLE IF NOT EXISTS `coop_acreedor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fideicomiso` varchar(250) DEFAULT NULL,
+  `num_fideicomiso` int(11) DEFAULT NULL,
+  `cooperativa` varchar(250) DEFAULT NULL,
+  `cedula` varchar(10) DEFAULT NULL,
+  `nombre` varchar(250) DEFAULT NULL,
+  `tipo` varchar(50) DEFAULT NULL,
+  `vigente` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='datos de los acreedores ';
+
+-- Volcando datos para la tabla cooperativas.coop_acreedor: ~9 rows (aproximadamente)
+/*!40000 ALTER TABLE `coop_acreedor` DISABLE KEYS */;
+INSERT INTO `coop_acreedor` (`id`, `fideicomiso`, `num_fideicomiso`, `cooperativa`, `cedula`, `nombre`, `tipo`, `vigente`) VALUES
+	(2, 'DECIMO OCTAVO FIDEICOMISO', 18, 'CÁMARA DE COMERCIO DE LOJA', '1100189545', 'GUZMAN ORDOÑEZ LUIS VICENTE', 'DEUDOR', 'SI'),
+	(3, 'DECIMO NOVENO  FIDEICOMISO', 19, '27 DE ABRIL', '1101990354', 'BONILLA PUCHAICELA FAUSTINO', 'GARANTE', 'SI'),
+	(4, 'DÉCIMO CUARTO  FIDEICOMISO', 14, 'ARTESANAL DEL AZUAY', '103061248', 'MARIN JIMENEZ LUPE CATALINA', 'DEUDOR', 'SI'),
+	(5, 'DÉCIMO QUINTO  FIDEICOMISO', 15, 'COFEM', '1713340394', 'VALENCIA RUIZ ANA SOFIA', 'DEUDOR', 'SI'),
+	(6, 'DÉCIMO SEXTO  FIDEICOMISO', 16, 'ESCENCIA INDÍGENA', '0400056966', 'MONTENEGRO ROSALES CECILIA INES', 'GARANTE', 'NO'),
+	(7, 'SÉPTIMO FIDEICOMISO', 7, 'COODEPRO LOJA', '1102293667', 'BENITEZ CURAY LUIS EDUARDO', 'DEUDOR', 'NO'),
+	(8, 'DECIMO TERCER FIDEICOMISO', 13, 'SUMAK ÑAN', '1802435683', 'POAQUIZA GUASHCO JOSE FRANCISCO', 'GARANTE', 'NO'),
+	(9, 'DECIMO SGUNDO FIDEICOMISO', 12, 'SALASACA', '1803442456', 'PILLA MASAQUIZA DARIO ANTONIO', 'DEUDOR', 'NO'),
+	(10, 'DECIMO NOVENO  FIDEICOMISO', 19, '27 DE ABRIL', '1104874688', 'RIOFRIO AVALOS MARIA DEL CARMEN', 'DEUDOR', 'SI');
+/*!40000 ALTER TABLE `coop_acreedor` ENABLE KEYS */;
+
+-- Volcando estructura para tabla cooperativas.coop_proveedor
+DROP TABLE IF EXISTS `coop_proveedor`;
+CREATE TABLE IF NOT EXISTS `coop_proveedor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fideicomiso` varchar(20) DEFAULT NULL,
+  `num_fideicomiso` int(11) DEFAULT NULL,
+  `cooperativa` varchar(18) DEFAULT NULL,
+  `cedula` varchar(13) DEFAULT NULL,
+  `nombre` varchar(37) DEFAULT NULL,
+  `tipo` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla cooperativas.coop_proveedor: ~35 rows (aproximadamente)
+/*!40000 ALTER TABLE `coop_proveedor` DISABLE KEYS */;
+INSERT INTO `coop_proveedor` (`id`, `fideicomiso`, `num_fideicomiso`, `cooperativa`, `cedula`, `nombre`, `tipo`) VALUES
+	(1, 'PRIMER FIDEICOMISO', 1, 'COOPERA', '0101275915', 'PELAEZ ZOILA CLEMENTINA', 'DEUDOR'),
+	(2, 'PRIMER FIDEICOMISO', 1, 'COOPERA', '0101430833', 'CHUMBI QUINDE MARIA TRANSITO', 'GARANTE'),
+	(3, 'PRIMER FIDEICOMISO', NULL, 'COOPERA', '0101663169', 'YUNGA CHICAIZA LUIS ANTONIO', 'DEUDOR'),
+	(4, 'PRIMER FIDEICOMISO', NULL, 'COOPERA', '0101348126', 'BOJORQUE QUITO MARTHA HERLINDA', 'DEUDOR'),
+	(5, 'PRIMER FIDEICOMISO', NULL, 'COOPERA', '0100951086', 'BONILLA VAZQUEZ JUAN RODRIGO', 'GARANTE'),
+	(6, 'PRIMER FIDEICOMISO', NULL, 'COOPERA', '0301419214', 'LEMA QUINTEROS PABLO VICENTE', 'DEUDOR'),
+	(7, 'PRIMER FIDEICOMISO', NULL, 'COOPERA', '0105359772', 'TENESACA PANGOL CLARA CATALINA', 'GARANTE'),
+	(8, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '0603122029', 'RIOFRIO AVALOS MARIA DEL CARMEN', 'DEUDOR'),
+	(9, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '0603246778', 'OQUENDO ALMEIDA MARCO VINICIO', 'CODEUDOR'),
+	(10, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '0604307132', 'GUACHO TENE JUAN ELICIO', 'DEUDOR'),
+	(11, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '0602063125', 'JARRIN ZAMBRANO SHIRLEY ALICIA', 'DEUDOR'),
+	(12, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '0602758393', 'INGUILLAY ANILEMA MELCHOR', 'DEUDOR'),
+	(13, 'CUARTO FIDEICOMISO', NULL, 'ACCIÓN RURAL', '1203202948', 'CABRERA JUCA ROSA BENIGNA', 'CODEUDOR'),
+	(14, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '2000053351', 'GILCES PONCE JESSENIA ANGELICA', 'GARANTE'),
+	(15, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '1309681961', 'NAVARRETE LOOR SAUL MARCELO', 'DEUDOR'),
+	(16, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '0909625923', 'MALDONADO MENDEZ EDDY EUGENIO', 'GARANTE'),
+	(17, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '2000070694', 'MORETA CHILIQUINGA PEDRO DANIEL', 'DEUDOR'),
+	(18, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '2000026514', 'BARRERA BURGOS GIOCONDA TRICIA', 'DEUDOR'),
+	(19, 'DÉCIMO SEGUNDO', NULL, 'SALASACA', '2000037529', 'JARAMILLO GIL FRANKLIN GERMAN', 'CODEUDOR'),
+	(20, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '0701892739', 'PALACIOS VALAREZO LORGIA NARCISA', 'DEUDOR'),
+	(21, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '0702178971', 'BARRERA ORDOÑEZ EMERITA PAQUITA', 'DEUDOR'),
+	(22, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '0703400507', 'QUEZADA ORDOÑEZ JONNY MAGALI', 'DEUDOR'),
+	(23, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '0700654684', 'ORDOÑEZ GRANDA AMELIA DEL CARMEN', 'GARANTE'),
+	(24, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '0703663963', 'CALDERON GOMEZ JOSE ALBERTO', 'DEUDOR'),
+	(25, 'SEPTIMO FIDEICOMISO', NULL, 'CODEPRO LOJA', '1100001005', 'LARREA GUERRERO GORKI RODRIGO', 'DEUDOR'),
+	(26, 'DÉCIMO QUINTO', NULL, 'COFEM', '0101275915', 'PELAEZ ZOILA CLEMENTINA', 'DEUDOR'),
+	(27, 'DÉCIMO QUINTO', NULL, 'COFEM', '0101430833', 'CHUMBI QUINDE MARIA TRANSITO', 'GARANTE'),
+	(28, 'DÉCIMO QUINTO', NULL, 'COFEM', '0101663169', 'YUNGA CHICAIZA LUIS ANTONIO', 'DEUDOR'),
+	(29, 'DÉCIMO QUINTO', NULL, 'COFEM', '0101348126', 'BOJORQUE QUITO MARTHA HERLINDA', 'DEUDOR'),
+	(30, 'DÉCIMO QUINTO', NULL, 'COFEM', '0100951086', 'BONILLA VAZQUEZ JUAN RODRIGO', 'GARANTE'),
+	(31, 'DÉCIMO SÉPTIMO', NULL, 'LOJA INTERNACIONAL', '1100249430', 'ALVARADO JORGE EDUARDO', 'DEUDOR'),
+	(32, 'DÉCIMO SÉPTIMO', NULL, 'LOJA INTERNACIONAL', '1102144852', 'CARDENAS ZHUNAULA ELIZABETH DEL CISNE', 'DEUDOR'),
+	(33, 'DÉCIMO SÉPTIMO', NULL, 'LOJA INTERNACIONAL', '1100174257', 'CARDENAS  CALDERON JOSE  JACINTO', 'GARANTE'),
+	(34, 'DÉCIMO SÉPTIMO', NULL, 'LOJA INTERNACIONAL', '1100574241', 'ZHUNAULA  ZHUNAULA ROSA  AURORA', 'GARANTE'),
+	(35, 'DÉCIMO SÉPTIMO', NULL, 'LOJA INTERNACIONAL', '1103470173', 'ESPINOZA CABRERA JINELA DEL CISNE', 'DEUDOR');
+/*!40000 ALTER TABLE `coop_proveedor` ENABLE KEYS */;
+
+-- Volcando estructura para tabla cooperativas.menu
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `texto` text,
+  `imagen` varchar(50) DEFAULT NULL,
+  `href` text,
+  `estado` text,
+  `onclick` text,
+  `submenu` text,
+  `oculta` varchar(100) DEFAULT NULL,
+  `muestra` varchar(100) DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='menu chat';
+
+-- Volcando datos para la tabla cooperativas.menu: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+INSERT INTO `menu` (`id`, `texto`, `imagen`, `href`, `estado`, `onclick`, `submenu`, `oculta`, `muestra`, `nombre`) VALUES
+	(1, 'Es <b><span style="color: yellow !important;">DEUDOR</span></b>', '../images/logo.png', 'submt_segd', '1', 'submt_segd', 'menu2', 'submt_acreedor1', 'submt_segd', 'boton 1'),
+	(2, 'Es <b><span style="color: yellow;">ACREEDOR</span></b>', '../images/logo.png', 'submt_acreedor1', '1', 'submt_acreedor', 'menub', 'submt_segd', 'submt_acreedor1', 'boton 2');
+/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+
+-- Volcando estructura para tabla cooperativas.nivel2
+DROP TABLE IF EXISTS `nivel2`;
+CREATE TABLE IF NOT EXISTS `nivel2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `submenu_padre` varchar(100) DEFAULT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  `texto` varchar(255) DEFAULT NULL,
+  `href` varchar(100) DEFAULT NULL,
+  `estado` int(11) DEFAULT '1',
+  `onclick` varchar(100) DEFAULT NULL,
+  `submenu` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla cooperativas.nivel2: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `nivel2` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nivel2` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
